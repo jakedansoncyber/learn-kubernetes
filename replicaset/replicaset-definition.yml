@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: busybox
+  labels:
+    env: production
+    type: busybox
+spec:
+  template:
+    metadata:
+      name: busybox
+      labels:
+        env: production
+    spec:
+      containers:
+        - name: busybox-container
+          image: busybox
+  replicas: 3
+  
+  # helps identify what pods fall under the replicaset
+  # this is because the replicaset can manage pods that aren't defined in the spec above
+  # required always
+  selector: 
+    matchLabels:
+      env: production
+      type: busybox
+    
