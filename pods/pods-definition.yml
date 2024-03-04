@@ -1,0 +1,19 @@
+# Case senstitive!
+# kubectl apply -f pods-definition.yml or kubectl create -f pods-definition.yml (same thing)
+# check state with:
+# kubectl get pods
+# kubectl describer pod nginx
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  # Dictionary!
+  labels:
+    app: nginx
+    tier: frontend
+spec:
+  # list/array!
+  containers: 
+    - name: nginx # your own name
+      image: nginx # dockerhub image name

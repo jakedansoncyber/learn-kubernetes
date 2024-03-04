@@ -1,0 +1,21 @@
+# Note: Replication controller is outdated! Use replica sets instead! This is just an example.
+
+apiVersion: v1
+kind: ReplicationController
+metadata: # Replication Controller metadata
+  name: myapp-rc
+  labels:
+    app: myapp
+    type: front-end
+spec: # Replication Controller spec
+  template:
+    metadata: # Pod metadata
+      name: myapp=pod
+      labels:
+        app: myapp
+        type: front-end
+    spec: # Pod specification
+      containers:
+        - name: nginx-container
+          image: nginx
+  replicas: 3
