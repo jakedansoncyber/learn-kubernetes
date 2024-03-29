@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kubernetes.io/change-cause: Use ubuntu nginx image instead # This is the new way to do things instead of using the deprecated --record
+  name: myapp-deployment
+  labels:
+    tier: frontend
+    app: nginx
+spec:
+  template:
+    metadata:
+      name: nginx-2
+      labels:
+        app: myapp
+    spec: # The revision history only changes when you change the spec of the container e.g a different image version
+      containers:
+        - name: nginx
+          image: nginx:ubuntu
+  selector:
+    matchLabels:
+      app: myapp
+  replicas: 6 # The revision history doesn't change on scaling of pods change
